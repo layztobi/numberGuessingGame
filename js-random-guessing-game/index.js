@@ -1,45 +1,42 @@
 alert("Welcome, This is a Simple Guessing Game")
-numberGuessingGame()
-alert("Thank You! and Goodbye!")
+point = 0
+range =  2
+guessCount = 0
+do {numberGuessingGame()} while(range<=10&&usersGuess!==null)
+alert('you made '+ guessCount + ' guesses '+"Your Total point is " + point + " Thank You! and Goodbye!")
 
 // program for a simple guessing game
 function validGuess(guess){
-    if(guess == 1)return false
-    if (guess == 2)return false
-    if (guess == 3)return false
+    if(0 < guess <= 1)return false
+    if(guess === null)return false
+
     return true
 }
 function getUserGuess(){
     usersGuess = prompt("Enter a Number Guess: ")
     while(validGuess(usersGuess)){
-        if (usersGuess === null) return
-        else usersGuess = prompt( "Enter a valid Guess:")
+         usersGuess = prompt( "Enter a valid Guess:")
     }
-    console.log(usersGuess)
     return usersGuess
 }
+function getRandomNumber(range){
+randomNumber = Math.floor(Math.random()*range+1)
+return randomNumber
+}
 function numberGuessingGame(){
-    let randomNumber = Math.floor(Math.random()*2+1)
-    let randomNumber1 = Math.floor(Math.random()*3+1)
-    let guessCount = 1
-    let guessCount1 = 1
-    alert('Welcome to stage 1 of the guessing game, Pick a number between 1 and 2')
+    alert('Welcome to stage '+ point+ ' of the guessing game, Pick a number between 1 and ' + range)
     getUserGuess()
-    console.log(randomNumber)
-    while(usersGuess!=randomNumber){
+    getRandomNumber(range)
+    while(usersGuess!=randomNumber&&usersGuess!==null){
         alert('You have guessed the wrong number')
+        guessCount++
         getUserGuess()
+    }
+    if (usersGuess == randomNumber){
+        alert('You have guessed the right number and have gained a point')
+        range++
+        point++
         guessCount++
     }
-    if (usersGuess == randomNumber){alert('You have guessed the right number in '+ guessCount + " guess")}
-    alert('Welcome to stage 2 of the guessing game, Pick a number between 1 and 3')
-      console.log(randomNumber1)
-    while(usersGuess!=randomNumber1){ 
-        alert('You have guessed the wrong number')
-        getUserGuess()
-        guessCount1++
-    }
-    if (usersGuess == randomNumber1){alert('You have guessed the right number in '+ guessCount1 + " guess")}
-
 }
 
